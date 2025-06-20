@@ -6,5 +6,5 @@ export default defineConfig({
   plugins: [
     tailwindcss(),
     react()],
-    base:"/portfolio"
+    base:process.loadEnvFile.VITE_BASE_PATH || "/portfolio",
 })
