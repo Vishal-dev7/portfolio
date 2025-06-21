@@ -13,7 +13,7 @@ const Home = () => {
       <h4 class="mt-4  sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl">FRONTEND DEVELOPER | GRAPHIC DESIGNER</h4>
       <p class="mt-2">Turning ideas into beautiful, functional interfaces.
 I specialize in building fast, responsive, and user-friendly web experiences.</p>
-    <button class="bg-gradient-to-r from-purple-600 to-red-500 border px-11 mt-2 text-white py-2 rounded-tr-2xl rounded-bl-2xl shadow-gray-700 shadow-md 2xl:ml-12 2xl:mt-4 border-none 2xl:px-10 2xl:py-5 2xl:text-2xl"><a href="heroImage.jpg" download>CV</a></button>
+    <button class="bg-gradient-to-r from-purple-600 to-red-500 border px-11 mt-2 text-white py-2 rounded-tr-2xl rounded-bl-2xl shadow-gray-700 shadow-md 2xl:ml-12 2xl:mt-4 border-none  2xl:px-20 2xl:py-5 2xl:text-2xl 2xl:font-bold"><a href="heroImage.jpg" download>CV</a></button>
   
     </div>
     <div class='hidden sm:block  mt-2 sm:mr-5 sm:mt-20 bg-transparent z-0 place-items-center ' >

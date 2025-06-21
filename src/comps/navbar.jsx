@@ -33,10 +33,10 @@ const Navbar = () => {
 
         {/* Desktop nav */}
         <div className="hidden sm:block items-center  mx-auto">
-         <div className='  flex items-center  p-3  shadow-2xl shadow-black bg-black text-white mx-auto mt-5 rounded-3xl ' >              
-            <a href="#home" className="hover:underline ml-3">Home</a>
-            <a href="#about" className="hover:underline ml-3">About</a>
-            <a href="#contact" className="hover:underline ml-3 mr-2">Contact</a>
+         <div className='  flex items-center  p-3  shadow-2xl shadow-black bg-black text-white mx-auto mt-12 rounded-3xl ' >              
+            <a href="#home" className="hover:underline mx-5">Home</a>
+            <a href="#about" className="hover:underline mx-5">About</a>
+            <a href="#contact" className="hover:underline mx-5 mr-2">Contact</a>
           </div>
         </div>
 
