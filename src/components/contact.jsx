@@ -78,8 +78,7 @@ const Contact = () => {
             <p>
               To start, could you give us your <span className="text-purple-300">email</span> ? 
             </p>
-           <div class="flex ">
-           <span class="mr-2 mt-3 animate-pulse duration-100">></span>
+           
             {step > 1 ? (
               <p className="text-green-400 mt-1">✔ {form.email}</p>
             ) : (
@@ -97,7 +96,7 @@ const Contact = () => {
                 onKeyDown={(e) => e.key === "Enter" && handleNext()}
                 id="email"
               /> 
-            )}</div>
+            )}
           </div>
 
           {/* Step 2: Name */}
@@ -107,8 +106,7 @@ const Contact = () => {
               <p>
                 Awesome! And what's your <span className="text-purple-300">name</span>?
               </p>
-              <div class="flex ">
-           <span class="mr-2 mt-3">></span>
+             
               {step > 2 ? (
                 <p className="text-green-400 mt-1">✔ {form.name}</p>
               ) : (
@@ -125,7 +123,7 @@ const Contact = () => {
                   onKeyDown={(e) => e.key === "Enter" && handleNext()}
                   id="name"
                 />
-              )}</div>
+              )}
 
             </div>
           )}
@@ -134,8 +132,7 @@ const Contact = () => {
           {step >= 3 && (
             <div>
               <p>Perfect, and how can we help you?</p>
-               <div class="flex ">
-           <span class="mr-2 mt-3">></span>
+              
               {step > 3 ? (
                 <p className="text-green-400 mt-1">✔ {form.description}</p>
               ) : (
@@ -150,7 +147,7 @@ const Contact = () => {
                   onKeyDown={(e) => e.key === "Enter" && handleNext()}
                   id="msg"
                 />
-              )}</div>
+              )}
             </div>
           )}
 
