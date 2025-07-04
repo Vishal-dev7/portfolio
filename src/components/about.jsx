@@ -2,258 +2,41 @@ import React from 'react'
 import Navbar from '../comps/navbar'
 import aboutimg from '../img/about.png';
 import heroImage from "../img/hero.jpg";
- //import { useEffect, useRef } from "react";
-// import { Renderer, Camera, Geometry, Program, Mesh } from "ogl";
+
 
 const About = () => {
+  
  
-// const defaultColors = ["#ffffff", "#ffffff", "#ffffff"];
-
-// const hexToRgb = (hex) => {
-//   hex = hex.replace(/^#/, "");
-//   if (hex.length === 3) {
-//     hex = hex.split("").map((c) => c + c).join("");
-//   }
-//   const int = parseInt(hex, 16);
-//   const r = ((int >> 16) & 255) / 255;
-//   const g = ((int >> 8) & 255) / 255;
-//   const b = (int & 255) / 255;
-//   return [r, g, b];
-// };
-
-// const vertex = /* glsl */ `
-//   attribute vec3 position;
-//   attribute vec4 random;
-//   attribute vec3 color;
-  
-//   uniform mat4 modelMatrix;
-//   uniform mat4 viewMatrix;
-//   uniform mat4 projectionMatrix;
-//   uniform float uTime;
-//   uniform float uSpread;
-//   uniform float uBaseSize;
-//   uniform float uSizeRandomness;
-  
-//   varying vec4 vRandom;
-//   varying vec3 vColor;
-  
-//   void main() {
-//     vRandom = random;
-//     vColor = color;
-    
-//     vec3 pos = position * uSpread;
-//     pos.z *= 10.0;
-    
-//     vec4 mPos = modelMatrix * vec4(pos, 1.0);
-//     float t = uTime;
-//     mPos.x += sin(t * random.z + 6.28 * random.w) * mix(0.1, 1.5, random.x);
-//     mPos.y += sin(t * random.y + 6.28 * random.x) * mix(0.1, 1.5, random.w);
-//     mPos.z += sin(t * random.w + 6.28 * random.y) * mix(0.1, 1.5, random.z);
-    
-//     vec4 mvPos = viewMatrix * mPos;
-//     gl_PointSize = (uBaseSize * (1.0 + uSizeRandomness * (random.x - 0.5))) / length(mvPos.xyz);
-//     gl_Position = projectionMatrix * mvPos;
-//   }
-// `;
-
-// const fragment = /* glsl */ `
-//   precision highp float;
-  
-//   uniform float uTime;
-//   uniform float uAlphaParticles;
-//   varying vec4 vRandom;
-//   varying vec3 vColor;
-  
-//   void main() {
-//     vec2 uv = gl_PointCoord.xy;
-//     float d = length(uv - vec2(0.5));
-    
-//     if(uAlphaParticles < 0.5) {
-//       if(d > 0.5) {
-//         discard;
-//       }
-//       gl_FragColor = vec4(vColor + 0.2 * sin(uv.yxx + uTime + vRandom.y * 6.28), 1.0);
-//     } else {
-//       float circle = smoothstep(0.5, 0.4, d) * 0.8;
-//       gl_FragColor = vec4(vColor + 0.2 * sin(uv.yxx + uTime + vRandom.y * 6.28), circle);
-//     }
-//   }
-// `;
-
-// const Particles = ({
-//   particleCount = 200,
-//   particleSpread = 10,
-//   speed = 0.1,
-//   particleColors,
-//   moveParticlesOnHover = false,
-//   particleHoverFactor = 1,
-//   alphaParticles = false,
-//   particleBaseSize = 100,
-//   sizeRandomness = 1,
-//   cameraDistance = 20,
-//   disableRotation = false,
-//   className,
-// }) => {
-//   const containerRef = useRef(null);
-//   const mouseRef = useRef({ x: 0, y: 0 });
-
-//   useEffect(() => {
-//     const container = containerRef.current;
-//     if (!container) return;
-
-//     const renderer = new Renderer({ depth: false, alpha: true });
-//     const gl = renderer.gl;
-//     container.appendChild(gl.canvas);
-//     gl.clearColor(0, 0, 0, 0);
-
-//     const camera = new Camera(gl, { fov: 15 });
-//     camera.position.set(0, 0, cameraDistance);
-
-//     const resize = () => {
-//       const width = container.clientWidth;
-//       const height = container.clientHeight;
-//       renderer.setSize(width, height);
-//       camera.perspective({ aspect: gl.canvas.width / gl.canvas.height });
-//     };
-//     window.addEventListener("resize", resize, false);
-//     resize();
-
-//     const handleMouseMove = (e) => {
-//       const rect = container.getBoundingClientRect();
-//       const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-//       const y = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
-//       mouseRef.current = { x, y };
-//     };
-
-//     if (moveParticlesOnHover) {
-//       container.addEventListener("mousemove", handleMouseMove);
-//     }
-
-//     const count = particleCount;
-//     const positions = new Float32Array(count * 3);
-//     const randoms = new Float32Array(count * 4);
-//     const colors = new Float32Array(count * 3);
-//     const palette = particleColors && particleColors.length > 0 ? particleColors : defaultColors;
-
-//     for (let i = 0; i < count; i++) {
-//       let x, y, z, len;
-//       do {
-//         x = Math.random() * 2 - 1;
-//         y = Math.random() * 2 - 1;
-//         z = Math.random() * 2 - 1;
-//         len = x * x + y * y + z * z;
-//       } while (len > 1 || len === 0);
-//       const r = Math.cbrt(Math.random());
-//       positions.set([x * r, y * r, z * r], i * 3);
-//       randoms.set([Math.random(), Math.random(), Math.random(), Math.random()], i * 4);
-//       const col = hexToRgb(palette[Math.floor(Math.random() * palette.length)]);
-//       colors.set(col, i * 3);
-//     }
-
-//     const geometry = new Geometry(gl, {
-//       position: { size: 3, data: positions },
-//       random: { size: 4, data: randoms },
-//       color: { size: 3, data: colors },
-//     });
-
-//     const program = new Program(gl, {
-//       vertex,
-//       fragment,
-//       uniforms: {
-//         uTime: { value: 0 },
-//         uSpread: { value: particleSpread },
-//         uBaseSize: { value: particleBaseSize },
-//         uSizeRandomness: { value: sizeRandomness },
-//         uAlphaParticles: { value: alphaParticles ? 1 : 0 },
-//       },
-//       transparent: true,
-//       depthTest: false,
-//     });
-
-//     const particles = new Mesh(gl, { mode: gl.POINTS, geometry, program });
-
-//     let animationFrameId;
-//     let lastTime = performance.now();
-//     let elapsed = 0;
-
-//     const update = (t) => {
-//       animationFrameId = requestAnimationFrame(update);
-//       const delta = t - lastTime;
-//       lastTime = t;
-//       elapsed += delta * speed;
-
-//       program.uniforms.uTime.value = elapsed * 0.001;
-
-//       if (moveParticlesOnHover) {
-//         particles.position.x = -mouseRef.current.x * particleHoverFactor;
-//         particles.position.y = -mouseRef.current.y * particleHoverFactor;
-//       } else {
-//         particles.position.x = 0;
-//         particles.position.y = 0;
-//       }
-
-//       if (!disableRotation) {
-//         particles.rotation.x = Math.sin(elapsed * 0.0002) * 0.1;
-//         particles.rotation.y = Math.cos(elapsed * 0.0005) * 0.15;
-//         particles.rotation.z += 0.01 * speed;
-//       }
-
-//       renderer.render({ scene: particles, camera });
-//     };
-
-//     animationFrameId = requestAnimationFrame(update);
-
-//     return () => {
-//       window.removeEventListener("resize", resize);
-//       if (moveParticlesOnHover) {
-//         container.removeEventListener("mousemove", handleMouseMove);
-//       }
-//       cancelAnimationFrame(animationFrameId);
-//       if (container.contains(gl.canvas)) {
-//         container.removeChild(gl.canvas);
-//       }
-//     };
-//     // eslint-disable-next-line react-hooks/exhaustive-deps
-//   }, [
-//     particleCount,
-//     particleSpread,
-//     speed,
-//     moveParticlesOnHover,
-//     particleHoverFactor,
-//     alphaParticles,
-//     particleBaseSize,
-//     sizeRandomness,
-//     cameraDistance,
-//     disableRotation,
-//   ]);
-
-
-
   return (
-    <div id="about">
+    <div id="about" class="bg-black ">
          
-        <section class="overflow-hidden mb-10">
+        <section class="overflow-hidden pb-13 pt-10 text-white ">
           <div>
-            <h1 class="text-center font-semibold text-2xl sm:text-3xl xl:text-5xl mt-5 sm:mt-9">About me</h1>
-            <div class="flex mt-5">
-              <div class="w-full sm:w-1/2 text-center justify-items-center my-auto">
-              <h4 class="text-left sm:text-xl md:text-2xl lg:text-3xl text-xs md:pl-5 ml-3 ">I am currently pursuing a Bachelor of Computer Applications (BCA) at SASTRA deemed to be university,with focused interest in frontend developement.I am passionate about creating responsie ,user-centric web interfaces that align with modern standards.</h4>
+            <h1 class="text-center font-semibold text-2xl sm:text-2xl xl:text-5xl mt-5 sm:mt-9">About me</h1>
+            <div class="flex mt-5 mb-10">
+              <div class="w-full sm:w-1/2 text-center justify-items-center my-auto  m-2  " data-aos="fade-up" data-aos-duration="1000">
+              <div class="flex w-full  ml-5 ">
+              <span class="mt-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-8 text-purple-500">
+                   <path fill-rule="evenodd" d="M9 4.5a.75.75 0 0 1 .721.544l.813 2.846a3.75 3.75 0 0 0 2.576 2.576l2.846.813a.75.75 0 0 1 0 1.442l-2.846.813a3.75 3.75 0 0 0-2.576 2.576l-.813 2.846a.75.75 0 0 1-1.442 0l-.813-2.846a3.75 3.75 0 0 0-2.576-2.576l-2.846-.813a.75.75 0 0 1 0-1.442l2.846-.813A3.75 3.75 0 0 0 7.466 7.89l.813-2.846A.75.75 0 0 1 9 4.5ZM18 1.5a.75.75 0 0 1 .728.568l.258 1.036c.236.94.97 1.674 1.91 1.91l1.036.258a.75.75 0 0 1 0 1.456l-1.036.258c-.94.236-1.674.97-1.91 1.91l-.258 1.036a.75.75 0 0 1-1.456 0l-.258-1.036a2.625 2.625 0 0 0-1.91-1.91l-1.036-.258a.75.75 0 0 1 0-1.456l1.036-.258a2.625 2.625 0 0 0 1.91-1.91l.258-1.036A.75.75 0 0 1 18 1.5ZM16.5 15a.75.75 0 0 1 .712.513l.394 1.183c.15.447.5.799.948.948l1.183.395a.75.75 0 0 1 0 1.422l-1.183.395c-.447.15-.799.5-.948.948l-.395 1.183a.75.75 0 0 1-1.422 0l-.395-1.183a1.5 1.5 0 0 0-.948-.948l-1.183-.395a.75.75 0 0 1 0-1.422l1.183-.395c.447-.15.799-.5.948-.948l.395-1.183A.75.75 0 0 1 16.5 15Z" clip-rule="evenodd" />
+                  </svg>
+              </span>
+              <h1 class="text-xl ml-2 mt-2">Hello,I am Vishal</h1>
+              </div>
+              <h4 class="text-left sm:text-xl md:text-2xl lg:text-3xl text-xs md:pl-5 ml-3 mx-5 sm:mx-0 p-3">I am currently pursuing a Bachelor of Computer Applications (BCA) at SASTRA deemed to be university,with focused interest in frontend developement.I am passionate about creating responsie ,user-centric web interfaces that align with modern standards.</h4>
               </div>
               <div class="w-1/2 hidden sm:block justify-items-center">
-                <img src={heroImage} alt="" class="hidden sm:block size-200 item-center" />
+                
               </div>
-             {/* return (
-    <div
-      ref={containerRef}
-      className={`relative w-full h-full ${className}`}
-    />
-  ); */}
+              
+
 
             </div>
           </div>
         </section>
         </div>
+        
   )
+  
 }
 
 export default About;
